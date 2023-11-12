@@ -1,0 +1,106 @@
+/* Global input rules */
+.input-group,
+.password-input {
+  position: relative;
+  width: 100%;
+}
+
+.input-control {
+  border: 1px solid #002147;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+  color: var(--primary);
+}
+
+.input-control:disabled {
+  border-color: var(--primary-disabled);
+  color: var(--primary-disabled);
+  -webkit-text-fill-color: var(--primary-disabled);
+  cursor: not-allowed;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--secondary) inset;
+  -webkit-text-fill-color: #002147;
+}
+
+.input-control:focus {
+  border: 1px solid transparent;
+  outline: 2px solid #ff9900;
+}
+
+label.disabled {
+  color: var(--primary-disabled);
+}
+
+.static-label,
+.animated-label.active {
+  position: absolute;
+  left: 5px;
+  top: -1px;
+  color: #002147;
+  transform: translate(0, -50%);
+  padding: 0 0.2rem;
+  background-color: #fbfbff;
+  font-size: 0.8rem;
+}
+
+.animated-label {
+  position: absolute;
+  top: 7px;
+  left: 5px;
+  transform: translate(0, 0);
+  color: var(--primary);
+  font-size: 1rem;
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  pointer-events: none;
+}
+
+/* Select */
+.select {
+  background-color: var(--secondary);
+}
+/* Checkbox */
+.check-box-label {
+  font-size: 0.8rem;
+  color: var(--primary);
+}
+.check-box-input {
+  margin-right: 0.25rem;
+}
+.input-group.error .check-box-input {
+  border-color: var(--danger);
+}
+/* Global errors */
+
+.input-group.error .input-control {
+  border: 1px solid var(--danger);
+}
+.input-group.error label,
+.input-group.error select {
+  color: var(--danger);
+}
+
+.error-msg {
+  font-size: 0.9rem;
+  color: var(--danger);
+}
+
+@media screen and (max-width: 400px) {
+  .input-control {
+    width: min(100%, 250px);
+  }
+  .input-group,
+  .password-input {
+    width: fit-content;
+  }
+}
+
+/* Password */
+
+.password-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
