@@ -1,0 +1,17 @@
+.suggestions-list {
+  position: absolute;
+  top: 2.3rem;
+  z-index: 1;
+  list-style: none;
+  width: 100%;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+.suggestion-item {
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+.suggestion-item.highlighted {
+  background-color: var(--primary-transparent);
+}

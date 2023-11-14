@@ -1,4 +1,5 @@
 import "./Assets/Form.css";
+import AutoCompleteFormInput from "./Components/AutoCompleteFormInput/AutoCompleteFormInput";
 import DisplayError from "./Components/DisplayError/DisplayError";
 import SubmitButton from "./Components/FormButton/SubmitButton";
 import FormCheckBox from "./Components/FormCheckBox/FormCheckBox";
@@ -55,6 +56,7 @@ export default function Form({
 }
 
 const allowedFormInputType = [
+  "autocompleteText",
   "text",
   "email",
   "number",
@@ -77,6 +79,8 @@ const renderInputComponent = (field) => {
     case "tel":
     case "search":
       return <TextBasedFormInput {...field} key={field.name} />;
+    case "autocompleteText":
+      return <AutoCompleteFormInput {...field} type='text' key={field.name} />;
     case "select":
       return <FormSelectInput {...field} key={field.name} />;
     case "checkbox":

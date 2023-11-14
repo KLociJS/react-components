@@ -1,6 +1,5 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Form from "./Form/Form";
-import deBouncer from "./Form/utils/debounce";
 import {
   allowedRange,
   isEmail,
@@ -10,21 +9,49 @@ import {
   required,
 } from "./Form/utils/validationRules";
 
+const API_URL = "http://localhost:5000/search?q=";
+
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isRetrying, setIsRetrying] = useState(false);
   const [fetchError, setFetchError] = useState(null);
 
-  const debounceAutocomplete = deBouncer((value) => {
-    console.count(value);
-  }, 300);
+  // const [autocompleteValue, setAutocompleteValue] = useState("");
+  // const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
 
-  const memoizedAutocomplete = useCallback(
-    (value) => debounceAutocomplete(value),
-    [debounceAutocomplete]
-  );
+  // const memoizedDebouncedComplete = useMemo(
+  //   () =>
+  //     deBouncer((inputValue) => {
+  //       const suggestions = testWords.filter((word) =>
+  //         word.includes(inputValue)
+  //       );
+  //       if (autocompleteValue !== "") {
+  //         setAutocompleteSuggestions(suggestions);
+  //       } else {
+  //         setAutocompleteSuggestions([]);
+  //       }
+  //     }, 300),
+  //   [autocompleteValue]
+  // );
+
+  // const debouncedAutoComplete = useCallback(memoizedDebouncedComplete, [
+  //   memoizedDebouncedComplete,
+  // ]);
+
+  // useEffect(() => {
+  //   debouncedAutoComplete(autocompleteValue);
+  // }, [autocompleteValue, debouncedAutoComplete]);
 
   const formFieldsConfig = [
+    {
+      type: "autocompleteText",
+      name: "autocomplete",
+      label: "Autocomplete",
+      initialValue: "Loci",
+      validations: [required("Autocomplete")],
+      isDisabled: isDisabled,
+      autoCompleteFetchUrl: API_URL,
+    },
     {
       type: "text",
       name: "name",
@@ -32,7 +59,6 @@ function App() {
       initialValue: "Loci",
       validations: [required("Name")],
       isDisabled: isDisabled,
-      autoComplete: memoizedAutocomplete,
     },
     {
       type: "date",

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { useFormContext } from "../../FormContext/FormContext";
 import DisplayError from "../DisplayError/DisplayError";
 import "../Input.css";
@@ -8,7 +9,6 @@ const TextBasedFormInput = ({
   name,
   type = "text",
   isDisabled = false,
-  autoComplete,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -19,14 +19,6 @@ const TextBasedFormInput = ({
 
   const isActive = isFocused || values[name] ? "active" : "";
   const disabled = isDisabled ? "disabled" : "";
-
-  const inputValue = values[name];
-
-  useEffect(() => {
-    if (autoComplete) {
-      autoComplete(inputValue);
-    }
-  }, [inputValue, autoComplete]);
 
   return (
     <div className={`input-group ${errors?.[name] ? "error" : ""}`}>
