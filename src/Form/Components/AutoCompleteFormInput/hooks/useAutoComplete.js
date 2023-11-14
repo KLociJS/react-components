@@ -63,10 +63,11 @@ export default function useAutoComplete(
   useEffect(() => {
     const getSuggestions = async () => {
       try {
-        const res = await fetchSuggestions(
+        const data = await fetchSuggestions(
           `${autoCompleteFetchUrl}${deBouncedInputValue}`
         );
-        setAutoCompleteSuggestions(res);
+        const slicedData = data.slice(0, 10);
+        setAutoCompleteSuggestions(slicedData);
       } catch (error) {
         console.error("Error fetching autocomplete suggestions:", error);
       }
