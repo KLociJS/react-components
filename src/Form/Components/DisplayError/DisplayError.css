@@ -1,0 +1,12 @@
+.error-msg {
+  font-size: 0.9rem;
+  color: var(--danger);
+  height: 1rem;
+}
+
+.error-msg.left {
+  align-self: flex-start;
+}
+.error-msg.center {
+  align-self: center;
+}

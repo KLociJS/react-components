@@ -13,6 +13,7 @@ const validateForm = (values, validations) => {
       }
     }
   }
+  console.log(errors);
   return errors;
 };
 

@@ -1,52 +1,48 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFormContext } from "../../FormContext/FormContext";
 import DisplayError from "../DisplayError/DisplayError";
 import "../Input.css";
+import CharacterCounter from "./CharacterCounter";
+import "./FormTextArea.css";
 
-const TextBasedFormInput = ({
+export default function FormTextArea({
   label,
   name,
-  type = "text",
   isDisabled = false,
-  autoComplete,
-}) => {
+  min,
+  max,
+}) {
   const [isFocused, setIsFocused] = useState(false);
-
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
   const { values, errors, handleChange } = useFormContext();
 
-  const isActive = isFocused || values[name] ? "active" : "";
-  const disabled = isDisabled ? "disabled" : "";
-
-  const inputValue = values[name];
-
-  useEffect(() => {
-    if (autoComplete) {
-      autoComplete(inputValue);
-    }
-  }, [inputValue, autoComplete]);
+  const activeClass = isFocused || values[name] ? "active" : "";
+  const disabledClass = isDisabled ? "disabled" : "";
+  const errorClass = errors?.[name] ? "error" : "";
 
   return (
-    <div className={`input-group ${errors?.[name] ? "error" : ""}`}>
-      <label className={`animated-label ${isActive} ${disabled}`}>
+    <div className={`input-group text-area-group ${errorClass}`}>
+      <label className={`animated-label ${activeClass} ${disabledClass}`}>
         {label}
       </label>
-      <input
+      <textarea
         disabled={isDisabled}
         name={name}
-        type={type}
         value={values[name]}
-        className='input-control'
+        className='input-control text-area'
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
         autoComplete='off'
       />
+      <CharacterCounter
+        currentValue={values[name].length}
+        min={min}
+        max={max}
+      />
       <DisplayError errors={errors[name]} />
     </div>
   );
-};
-
-export default TextBasedFormInput;
+}

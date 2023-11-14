@@ -12,7 +12,8 @@ const getInputValueByType = (target, values) => {
         .map((option) => option.value);
     case "radio":
       return target.checked ? target.value : values[target.name];
-
+    // case "number":
+    //   return parseInt(target.value);
     default:
       return target.value;
   }
@@ -24,7 +25,6 @@ function useForm(initialValues, onSubmit, formValidations) {
 
   const handleChange = (event) => {
     const { name } = event.target;
-
     let updatedValue = getInputValueByType(event.target, values);
 
     setValues({ ...values, [name]: updatedValue });

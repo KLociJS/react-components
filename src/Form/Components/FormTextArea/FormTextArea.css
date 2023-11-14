@@ -1,0 +1,18 @@
+.textarea-counter {
+  font-size: 0.75rem;
+  margin: 0.1rem 0 0 auto;
+  color: var(--primary);
+}
+
+.textarea-counter.error {
+  color: var(--danger);
+}
+
+.text-area {
+  height: 150px;
+  resize: none;
+}
+.text-area-group {
+  display: flex;
+  flex-direction: column;
+}
